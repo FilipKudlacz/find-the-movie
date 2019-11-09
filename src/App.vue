@@ -1,17 +1,21 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Find-the-Movie</h1>
+    <p>
+    <input type="text" placeholder="Movie Name" v-model="inputFilmName">
+    </p>
+    <hr>
+    <search-result/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SearchResult from './components/SearchResult.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    SearchResult
   }
 }
 </script>
@@ -22,7 +26,24 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: white;
   margin-top: 60px;
 }
+
+body {
+  background-color: #2c3e50;
+}
+
+h1 {
+  border: 3px solid white;
+  font-size: 52px;
+}
+
+input {
+  height: 30px;
+  width: 500px;
+  font-size: 20px;
+  text-align: center;
+}
+
 </style>
