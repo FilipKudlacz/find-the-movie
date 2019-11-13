@@ -1,21 +1,16 @@
 <template>
   <div id="app">
-    <h1>Find-the-Movie</h1>
-    <p>
-    <input type="text" placeholder="Movie Name" v-model="inputFilmName">
-    </p>
-    <hr>
-    <search-result/>
+    <main-page></main-page>
   </div>
 </template>
 
 <script>
-import SearchResult from './components/SearchResult.vue'
+import MainPage from './views/MainPage.vue'
 
 export default {
   name: 'app',
   components: {
-    SearchResult
+    MainPage
   }
 }
 </script>
@@ -35,15 +30,11 @@ body {
 }
 
 h1 {
-  border: 3px solid white;
   font-size: 52px;
+  font-family: monospace;
 }
 
-input {
-  height: 30px;
-  width: 500px;
-  font-size: 20px;
-  text-align: center;
+hr {
+  width: 70%;
 }
-
 </style>
