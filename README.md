@@ -1,6 +1,12 @@
 # find-the-movie
 
 ## Project setup
+Create file key.json with your TMDB APIv3 key like this:
+```
+{
+    "apiKey": "Your API Key"
+}
+```
 ```
 npm install
 ```
