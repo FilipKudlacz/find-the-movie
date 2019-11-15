@@ -23,6 +23,7 @@ export default {
   text-align: center;
   color: white;
   margin-top: 60px;
+  box-sizing: border-box;
 }
 
 body {

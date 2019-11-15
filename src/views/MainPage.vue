@@ -1,9 +1,7 @@
 <template>
-    <div>
-        <h1>Find-the-Movie</h1>
-        <Label for="movieInput">
-            <input type="text" placeholder="Movie Name" v-model="inputFilmName" name="movieInput" @keyup.enter="handleInput">
-        </Label>
+    <div class="wrapper">
+        <Header />   
+        <input type="text" placeholder="Movie Name" v-model="inputFilmName" name="movieInput" @keyup.enter="handleInput">
         <hr>  
         <ul >
             <li v-for="item in movies" :key="item.id">
@@ -16,12 +14,14 @@
 <script>
 import axios from 'axios';
 import { apiKey } from './../../key.json';
+import Header from '@/components/Header.vue'
 
 const API = 'https://api.themoviedb.org/3';
 
 export default {
     name: "MainPage",
     components: {
+        Header
     },
     data() {
         return {
@@ -43,6 +43,10 @@ export default {
 </script>
 
 <style scoped>
+.wrapper {
+    margin-top: 130px;
+}
+
 input {
   height: 30px;
   width: 300px;
@@ -53,5 +57,18 @@ input {
   background-color: #2c3e50;
   margin-bottom: 20px;
   color: white;
+}
+
+p {
+    font-size: 16px;
+}
+
+input:focus {
+    outline: none;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0px;
 }
 </style>
