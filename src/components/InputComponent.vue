@@ -1,5 +1,5 @@
 <template>
-    <input type="text" placeholder="Movie Name" :value="value" @="emitChange" />
+    <input type="text" placeholder="Phrase" :value="value" @input="emitChange" />
 </template>
 
 <script>
@@ -27,8 +27,13 @@ input {
   text-align: center;
   border: 0;
   border-bottom: 2px solid #ff8300;
-  background-color: #2c3e50;
+  background: none;
   margin-bottom: 20px;
   color: white;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0px 10px 17px -12px #ff8300
 }
 </style>
