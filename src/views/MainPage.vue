@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
         <Header />   
-        <input type="text" placeholder="Movie Name" v-model="inputFilmName" name="movieInput" @keyup.enter="handleInput">
+        <InputComponent v-model="inputFilmName" @input="handleInput"/>
         <hr>  
         <ul >
             <li v-for="item in movies" :key="item.id">
@@ -15,13 +15,16 @@
 import axios from 'axios';
 import { apiKey } from './../../key.json';
 import Header from '@/components/Header.vue'
+import InputComponent from '@/components/InputComponent.vue'
+import debounce from 'lodash.debounce'
 
 const API = 'https://api.themoviedb.org/3';
 
 export default {
     name: "MainPage",
     components: {
-        Header
+        Header,
+        InputComponent,
     },
     data() {
         return {
@@ -30,14 +33,14 @@ export default {
         };
     },
     methods: {
-        handleInput() {
+        handleInput: debounce( function() {
             axios.get(`${API}/search/movie?api_key=${apiKey}&query=${this.inputFilmName}`)
             .then((response) => {
                 // eslint-disable-next-line no-console
                 console.log(response);
                 this.movies = response.data.results;
             });
-        },
+        }, 700),
     },
 }
 </script>
@@ -45,18 +48,6 @@ export default {
 <style scoped>
 .wrapper {
     margin-top: 130px;
-}
-
-input {
-  height: 30px;
-  width: 300px;
-  font-size: 20px;
-  text-align: center;
-  border: 0;
-  border-bottom: 2px solid #ff8300;
-  background-color: #2c3e50;
-  margin-bottom: 20px;
-  color: white;
 }
 
 p {
