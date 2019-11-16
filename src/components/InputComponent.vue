@@ -34,6 +34,5 @@ input {
 
 input:focus {
     outline: none;
-    box-shadow: 0px 10px 17px -12px #ff8300
 }
 </style>

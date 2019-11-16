@@ -18,7 +18,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 .headerWrapper {
     display: flex;
@@ -37,7 +37,9 @@ export default {
 .description {
     font-size: 22px;
 
-    max-width: 450px;
+    @media screen and (min-width: 768px) {
+        width: 450px;
+    }
 }
 
 .instruction {
