@@ -19,7 +19,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 input {
   height: 30px;
   width: 300px;
@@ -30,9 +30,9 @@ input {
   background: none;
   margin-bottom: 20px;
   color: white;
-}
 
-input:focus {
+  &:focus{
     outline: none;
+  }
 }
 </style>
