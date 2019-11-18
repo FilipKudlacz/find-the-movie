@@ -6,11 +6,9 @@
         </transition>
         <InputComponent v-model="inputFilmName" @input="handleInput" :class="{ inputStepOne: step === 1}"/>
         <hr>  
-        <ul >
-            <li v-for="item in movies" :key="item.id">
-                <p class="result">{{ item.title }}</p>
-            </li>
-        </ul>
+        <div class="movieList" v-if="step === 1">
+            <MovieInfo v-for="movie in movies" :key="movie.id" :movieData="movie"/>
+        </div>
   </div>
 </template>
 
@@ -19,6 +17,7 @@ import axios from 'axios';
 import { apiKey } from './../key.json';
 import Header from '@/components/Header.vue'
 import InputComponent from '@/components/InputComponent.vue'
+import MovieInfo from '@/components/MovieInfo.vue'
 import debounce from 'lodash.debounce'
 
 const API = 'https://api.themoviedb.org/3';
@@ -28,6 +27,7 @@ export default {
     components: {
         Header,
         InputComponent,
+        MovieInfo,
     },
     data() {
         return {
@@ -115,6 +115,16 @@ hr {
 
 .logoSlide-enter, .logoSlide-leave {
     margin-top: -50px;
+}
+
+.movieList {
+    display: grid;
+    grid-template-columns: auto;
+    margin: 20px 0;
+
+    @media screen and (min-width: 1024px) {
+        grid-template-columns: auto auto;
+    }
 }
 
 </style>
