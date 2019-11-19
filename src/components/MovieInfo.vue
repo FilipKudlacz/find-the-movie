@@ -13,7 +13,10 @@
 export default {
     name: "MovieInfo",
     props: {
-        movieData: Object,
+        movieData: {
+            type: Object,
+            required: true,
+        },
     },
 }
 </script>
