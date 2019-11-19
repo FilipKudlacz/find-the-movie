@@ -7,18 +7,20 @@
         <InputComponent v-model="inputFilmName" @input="handleInput" :class="{ inputStepOne: step === 1}"/>
         <hr>  
         <div class="movieList" v-if="step === 1">
-            <MovieInfo v-for="movie in movies" :key="movie.id" :movieData="movie"/>
+            <MovieInfo v-for="movie in movies" :key="movie.id" :movieData="movie" @click.native="openDescription(movie)" />
         </div>
+        <MovieDetails v-if="descriptionOpen" :movieDetails="descriptionData" @closeDetails="descriptionOpen = false"/>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import debounce from 'lodash.debounce'
 import { apiKey } from './../key.json';
 import Header from '@/components/Header.vue'
 import InputComponent from '@/components/InputComponent.vue'
 import MovieInfo from '@/components/MovieInfo.vue'
-import debounce from 'lodash.debounce'
+import MovieDetails from '@/components/MovieDetails.vue'
 
 const API = 'https://api.themoviedb.org/3';
 
@@ -28,6 +30,7 @@ export default {
         Header,
         InputComponent,
         MovieInfo,
+        MovieDetails,
     },
     data() {
         return {
@@ -35,9 +38,16 @@ export default {
             movies: [],
             loading: false,
             step: 0,
-        };
+            descriptionOpen: false,
+            descriptionData: null,
+        }
     },
     methods: {
+        openDescription(object) {
+            this.descriptionOpen = true;
+            this.descriptionData = object;
+        }, 
+
         handleInput: debounce(function() {
             this.loading = true;
             axios.get(`${API}/search/movie?api_key=${apiKey}&query=${this.inputFilmName}`)
