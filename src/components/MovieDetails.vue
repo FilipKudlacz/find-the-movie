@@ -6,11 +6,11 @@
                 <div class="upperText">
                     <h3 class="movieTitle"> {{ title }} </h3>
                     <p v-if="this.movieGenres.length > 0">Genres: 
-                        <span v-for="genre in movieGenres" :key="genre">{{genre}}</span>
+                        <span v-for="genre in movieGenres" :key="genre">{{genre}} </span>
                     </p>
                     <p>Popularity: {{ popularity }}</p>
                     <p>Votes: {{ votes }}</p>
-                    <p>Production Country </p>
+                    <p v-if="producedIn.length > 0">Production Country : {{producedIn}} </p>
                 </div>
             </div>
             <div class="textInfo">
@@ -58,6 +58,7 @@ export default {
         `https://api.themoviedb.org/3/movie/${this.movieDetails.id}?api_key=${apiKey}`)
       .then(data => {
         this.linkToImdb = `https://www.imdb.com/title/${data.data.imdb_id}`;
+        this.producedIn = data.data.production_countries[0].iso_3166_1;
       });
     }
 }
